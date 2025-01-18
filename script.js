@@ -1,7 +1,9 @@
 const container = document.querySelector(".main-container");
 const inputForm = document.querySelector(".input");
+let opacity = 100;
 
 createGrid(100);
+
 
 container.addEventListener("mouseover", (event) => {
     const element = event.target;
@@ -33,6 +35,13 @@ function applyRandomColor (block) {
     const b = Math.floor(Math.random() * 250);
     const rgb = `rgb(${r}, ${g}, ${b})`;
     block.style.backgroundColor = rgb;
+    block.style.opacity = opacity + "%";
+    if (opacity < 10) {
+        opacity = 100;
+    }
+    else {
+        opacity -= 10;
+    }
 }
 
 
