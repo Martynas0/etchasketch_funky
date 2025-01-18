@@ -7,7 +7,7 @@ container.addEventListener("mouseover", (event) => {
     const element = event.target;
     if (!element.classList.contains("row") &&
         !element.classList.contains("main-container")) {
-        element.classList.add("marked");
+        applyRandomColor(element); // add bgcolorhere
     }
 })
 
@@ -27,6 +27,15 @@ inputForm.addEventListener("click", (event) => {
     }    
 })
 
+function applyRandomColor (block) {
+    const r = Math.floor(Math.random() * 250);
+    const g = Math.floor(Math.random() * 250);
+    const b = Math.floor(Math.random() * 250);
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+    block.style.backgroundColor = rgb;
+}
+
+
 function createGrid(size) {
     for (let i = 0; i < size; i++) {
         const row = createRow();
@@ -41,10 +50,8 @@ function removeGrid () {
 
 function clearGrid () {
     const listOfBlocks = document.querySelectorAll(".block");
-    listOfBlocks.forEach( element => element.classList.remove("marked"))
+    listOfBlocks.forEach( element => element.style.backgroundColor = "white")
 }
-
-
 
 function createRow() {
     const row = document.createElement("div");
